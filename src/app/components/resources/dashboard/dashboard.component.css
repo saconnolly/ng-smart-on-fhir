@@ -1,0 +1,10 @@
+button {
+  background: cornflowerblue;
+  border-radius: 5px;
+  color: white;
+  margin-right: 10px;
+  border: gray;
+  height: 30px;
+  width: 150px;
+  font-size: 16px;
+}
