@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ClientAppService, FhirServerService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component which acts as the landing page for this Sample application, which lists all the servers and clients configured.
@@ -29,20 +30,20 @@ export class IndexComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this._clientAppService.getStandalonePatientApps()
-      .takeUntil(this._unsubscribe)
-      .subscribe(apps => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((apps: any) => {
         this.standalonePatientApps = apps;
       });
 
     this._fhirServerService.getAllServers()
-      .takeUntil(this._unsubscribe)
-      .subscribe(servers => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((servers: any) => {
         this.servers = servers;
       });
 
     this._clientAppService.getEhrLaunchApps()
-      .takeUntil(this._unsubscribe)
-      .subscribe(apps => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((apps: any) => {
         this.ehrLaunchApps = apps;
       });
   }

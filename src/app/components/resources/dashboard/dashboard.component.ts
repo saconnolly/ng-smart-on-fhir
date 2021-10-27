@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { SmartService } from '../../../services/smart.service';
 import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         const api: FHIR.SMART.Api = smartClient.api;
         const searchParams: FHIR.SMART.SearchParams = {

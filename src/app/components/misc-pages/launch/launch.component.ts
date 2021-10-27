@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
 import { ClientAppService, GlobalService, FhirServerService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component used by the route '/launch/{uniqueName}'
@@ -31,12 +32,12 @@ export class LaunchComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this._clientAppService.getAllClientApps()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(clientApps => {
         const uniqueName = this._route.snapshot.paramMap.get('uniqueName');
         const clientApp = clientApps.find(q => q.uniqueName === uniqueName);
         this._fhirServerService.getServer(clientApp.server)
-          .takeUntil(this._unsubscribe)
+          .pipe(takeUntil(this._unsubscribe))
           .subscribe(server => {
             const clientSettings: FHIR.SMART.OAuth2ClientSettings = {
               client_id: clientApp.clientId,

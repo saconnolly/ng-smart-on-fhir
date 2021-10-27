@@ -4,6 +4,7 @@ import { SmartService } from '../../../services/smart.service';
 import { Subject } from 'rxjs';
 import { CCDSResourceHelperService } from 'src/app/services/ccds-resource-helper.service';
 import { environment } from 'src/environments/environment.prod';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component used to display the Side Navigation menu based on the Capability of the server and the user scopes in context.
@@ -37,10 +38,10 @@ export class ResourcesMenuComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.showCCDSResourceMenuInstead = environment.showCCDSResourceMenuInstead;
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
-      .subscribe(smartClient => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((smartClient: any) => {
         this._smartService.getConformance()
-          .takeUntil(this._unsubscribe)
+          .pipe(takeUntil(this._unsubscribe))
           .subscribe(conformance => {
             this._zone.run(() => {
               this.supportedResources = this._helperService.resourcesSupported(conformance, smartClient.tokenResponse.scope, 'read');

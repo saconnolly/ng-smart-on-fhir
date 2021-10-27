@@ -6,6 +6,7 @@ import { GlobalService } from '../../../services/global.service';
 import { Subject } from 'rxjs';
 import { DataService } from '../../../services/data.service';
 import { MatSelectChange, MatSnackBar } from '@angular/material';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component used to create/update a particular FHIR resource
@@ -93,7 +94,7 @@ export class EditResourceComponent implements OnInit, OnDestroy {
     this.resourceType = this._route.snapshot.paramMap.get('resourceType');
     this.id = this._route.snapshot.paramMap.get('id');
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._canPerform(smartClient);
         if (this.id === 'new') {
@@ -115,7 +116,7 @@ export class EditResourceComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     // Have to append patient details as a query param since it breaks otherwise.
     const readParams: FHIR.SMART.ReadParams = {
-      id: this.id + '?patient=' + smartClient.patient.id, 
+      id: this.id + '?patient=' + smartClient.patient.id,
       type: this.resourceType
     };
     // Makes use of the SMART on FHIR JS Client read api method
@@ -171,7 +172,7 @@ export class EditResourceComponent implements OnInit, OnDestroy {
   save() {
     this.error = null;
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._zone.run(() => {
           // Updates the resource object sent
@@ -193,7 +194,7 @@ export class EditResourceComponent implements OnInit, OnDestroy {
    */
   delete() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._zone.run(() => {
           // Updates the resource object sent
@@ -211,7 +212,7 @@ export class EditResourceComponent implements OnInit, OnDestroy {
    */
   private _canPerform(smartClient: FHIR.SMART.SMARTClient) {
     this._smartService.getConformance()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(conformance => {
         this._zone.run(() => {
           let interaction = '';

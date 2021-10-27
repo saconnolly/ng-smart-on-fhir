@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { SmartService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component which displays the Capability Statement of the SMART on FHIR connected to.
@@ -25,11 +26,11 @@ export class ConformanceComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         // Makes a FHIR API call to the '/metadata' endpoint to get the CapabilityStatement
         this._smartService.getConformance()
-          .takeUntil(this._unsubscribe)
+          .pipe(takeUntil(this._unsubscribe))
           .subscribe(conformance => {
             this._zone.run(() => {
               this.conformance = conformance;
