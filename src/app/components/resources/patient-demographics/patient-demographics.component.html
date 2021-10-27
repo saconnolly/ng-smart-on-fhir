@@ -1,3 +1,5 @@
-<h1>Display some Patient Demographics here</h1>
-<label>Last Name: {{patient.entry[0].name.family}}</label>
-
+<label>First Name: {{patient.entry[0].resource.name[0].given[0]}}</label>
+<label>Last Name: {{patient.entry[0].resource.name[0].family}}</label>
+<label>Date of birth: {{patient.entry[0].resource.birthDate}}</label>
+<label>Gender: {{patient.entry[0].resource.gender}}</label>
+<br />

@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import {
   EditResourceComponent, PatientComponent,
   ResourcesTableComponent, ResourcesTableContainerComponent,
-  DashboardComponent, PatientDemographicsComponent
+  DashboardComponent, PatientDemographicsComponent,
+  PatternsOfUseComponent, TherapyDataComponent
 } from '.';
 import { ResourcesRoutingModule } from './resources-routing.module';
 import { AllMaterialModule } from '../../all-material/all-material.module';
@@ -29,7 +30,9 @@ import { SmartCommonModule } from '../common/smart-common.module';
     ResourcesTableComponent,
     ResourcesTableContainerComponent,
     DashboardComponent,
-    PatientDemographicsComponent
+    PatientDemographicsComponent,
+    PatternsOfUseComponent,
+    TherapyDataComponent
   ]
 })
 export class ResourcesModule { }

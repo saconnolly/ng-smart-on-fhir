@@ -12,6 +12,8 @@ import { Subject } from 'rxjs/internal/Subject';
 export class DashboardComponent implements OnInit, OnDestroy {
   public patient: any;
   public error: any;
+  public showingPou = false;
+  public showingTData = true;
 
   private _unsubscribe = new Subject<void>();
 
@@ -41,6 +43,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
           });
         });
       });
+  }
+
+  toggleOnPOU() {
+   this.showingPou = true;
+   this.showingTData = false;
+  }
+
+  toggleOnTData() {
+    this.showingPou = false;
+    this.showingTData = true;
   }
 
   ngOnDestroy() {
