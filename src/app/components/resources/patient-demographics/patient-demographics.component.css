@@ -1,0 +1,10 @@
+label {
+  display: block;
+}
+
+.demographics-container {
+  margin: 30px 5px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 20px;
+}
