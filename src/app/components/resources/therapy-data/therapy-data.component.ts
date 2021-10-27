@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, AfterViewInit, Inject, PLATFORM_ID, NgZone} from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import {isPlatformBrowser} from '@angular/common';
 
 
 @Component({
@@ -8,12 +9,22 @@ import * as am4charts from '@amcharts/amcharts4/charts';
   templateUrl: './therapy-data.component.html',
   styleUrls: ['./therapy-data.component.css']
 })
-export class TherapyDataComponent implements OnInit, OnDestroy {
+export class TherapyDataComponent implements OnDestroy, AfterViewInit {
   public chart: any;
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone) {}
 
-  ngOnInit() {
+  // Run the function only in the browser
+  browserOnly(f: () => void) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.zone.runOutsideAngular(() => {
+        f();
+      });
+    }
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
     this.chart = am4core.create('chartdiv', am4charts.XYChart);
     this.chart.data = [{
       'x': 1,
@@ -139,5 +150,11 @@ export class TherapyDataComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // Clean up chart when the component is removed
+    this.browserOnly(() => {
+      if (this.chart) {
+        this.chart.dispose();
+      }
+    });
   }
 }

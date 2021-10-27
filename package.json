@@ -33,7 +33,6 @@
     "ng2-ace-editor": "^0.3.8",
     "ngx-json-viewer": "^2.3.0",
     "rxjs": "^6.0.0",
-    "rxjs-compat": "^6.2.1",
     "xhook": "^1.4.9",
     "zone.js": "^0.8.26"
   },
