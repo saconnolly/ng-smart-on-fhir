@@ -1,5 +1,5 @@
 <app-patient-demographics></app-patient-demographics>
 <button (click)="toggleOnTData()" [class.isActive]="showingTData">Therapy Data</button>
 <button (click)="toggleOnPOU()"  [class.isActive]="showingPou">Patterns of Use</button>
-<app-therapy-data *ngIf="showingTData"></app-therapy-data>
-<app-patterns-of-use *ngIf="showingPou"></app-patterns-of-use>
+<app-therapy-data [hidden]="!showingTData"></app-therapy-data>
+<app-patterns-of-use [hidden]="!showingPou"></app-patterns-of-use>
