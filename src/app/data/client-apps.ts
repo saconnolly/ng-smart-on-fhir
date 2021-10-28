@@ -24,7 +24,8 @@ export const CLIENT_APPS: ClientApp[] = [
         scopes: 'launch/patient,offline_access,openid,patient/*.*,profile,fhirUser',
         standalonePatient: true,
         ehrLaunch: true,
-        server: 'logica'
+        server: 'logica',
+        dashboardDefaultLaunch: 'tdata'
     },
     {
         name: 'Shaun - Logica',
@@ -35,7 +36,8 @@ export const CLIENT_APPS: ClientApp[] = [
         scopes: 'launch/patient,offline_access,openid,patient/*.*,profile,fhirUser',
         standalonePatient: true,
         ehrLaunch: true,
-        server: 'logica'
+        server: 'logica',
+        dashboardDefaultLaunch: 'pou'
     },
     {
         name: 'Space Delimited Scope - Logica',

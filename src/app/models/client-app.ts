@@ -63,4 +63,9 @@ export interface ClientApp {
      * For this sample application we are storing it on the client side javascript variables itself.
      */
     secret?: string;
+
+    /**
+     * The default page to launch on the dashboard for this client
+     */
+    dashboardDefaultLaunch?: string;
 }
