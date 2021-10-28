@@ -3,6 +3,9 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { SmartService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
+
+
 
 /**
  * Displays the Time left for the Access Token in context.
@@ -42,7 +45,7 @@ export class AccessTokenTimerComponent implements OnInit, OnDestroy {
     }
 
     this._smartService.getTimeLeft()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(timeLeft => {
         if (this._smartService.getRefreshToken()) {
           this.canRefresh = true;

@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { SmartService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component which displays the current stat of the SMART Client Application
@@ -24,7 +25,7 @@ export class StateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._zone.run(() => {
           this.state = smartClient.state;

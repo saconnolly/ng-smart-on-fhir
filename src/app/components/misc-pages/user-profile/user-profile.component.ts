@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
 import { SmartService, HelperService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component used to display the User Profile by parsing the JWT token provided in id_tokent
@@ -27,7 +28,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._zone.run(() => {
           if (smartClient && smartClient.tokenResponse && smartClient.tokenResponse.id_token) {

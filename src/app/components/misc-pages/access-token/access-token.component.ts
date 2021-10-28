@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, SmartService } from '../../../services';
 import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component used to display the Current Token Response provided by the SMART Client api.
@@ -24,8 +25,8 @@ export class AccessTokenComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
-      .subscribe(smartClient => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((smartClient: any) => {
         this._zone.run(() => {
           this.tokenResponse = smartClient.tokenResponse;
         });

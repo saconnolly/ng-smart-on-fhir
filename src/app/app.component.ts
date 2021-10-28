@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AuthService, GlobalService, SmartService } from './services';
 import { ErrorDialogComponent } from './components/common/error-dialog/error-dialog.component';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Root Application Component
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Open the Common Error Dialog screen, whenever an error has been reported anywhere in the applciation
     this._globalService.getError()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(error => {
         if (error) {
           this._zone.run(() => {
@@ -71,8 +72,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isLoggedIn$.subscribe(isLoggedIn => {
       if (isLoggedIn && !this.initialized) {
         this._smartService.getClient()
-          .takeUntil(this._unsubscribe)
-          .subscribe(smartClient => {
+          .pipe(takeUntil(this._unsubscribe))
+          .subscribe((smartClient: any) => {
             this._zone.run(() => {
               this.initialized = true;
               this.canSwitchPatient = smartClient.state.client.scope.indexOf('launch/patient') !== -1;
@@ -96,8 +97,8 @@ export class AppComponent implements OnInit, OnDestroy {
   switchPatient() {
     this._authService.logout();
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
-      .subscribe(smartClient => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((smartClient: any) => {
         this._zone.run(() => {
           // Initiates the OAuth2.0 workflow, so that the user can select another record.
           const oauth2Configuration = smartClient.state;

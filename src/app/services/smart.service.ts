@@ -1,9 +1,8 @@
 declare var jwt: any;
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { Observable, BehaviorSubject, ReplaySubject ,  timer } from 'rxjs';
 import { GlobalService } from './global.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { timer } from 'rxjs/observable/timer';
 import { HelperService } from './helper.service';
 
 /**

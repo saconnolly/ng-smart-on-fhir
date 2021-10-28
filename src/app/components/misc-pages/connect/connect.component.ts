@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ClientAppService, FhirServerService, GlobalService } from '../../../services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component which displays the Server and Client Application information which the user is going to connect to.
@@ -28,8 +29,8 @@ export class ConnectComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._clientAppService.getAllClientApps()
-      .takeUntil(this._unsubscribe)
-      .subscribe(apps => {
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe((apps: any) => {
         const uniqueName = this._route.snapshot.paramMap.get('uniqueName');
         // Get the app based on the route parameter
         this.app = apps.find(q => q.uniqueName === uniqueName);
@@ -45,7 +46,7 @@ export class ConnectComponent implements OnInit, OnDestroy {
         this.scopes = scopes;
         const serverUniqueName = this.app.server;
         this._fhirServerService.getServer(serverUniqueName)
-          .takeUntil(this._unsubscribe)
+          .pipe(takeUntil(this._unsubscribe))
           .subscribe(server => {
             this.server = server;
           });

@@ -8,6 +8,7 @@ import { MatTabChangeEvent } from '@angular/material';
 import { CCDSResourceHelperService } from 'src/app/services/ccds-resource-helper.service';
 import { CCDSResourceMapping } from 'src/app/models/ccds-resource';
 import { environment } from 'src/environments/environment.prod';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * Component which fetches the FHIR resources based on the route parameter FHIR resource type
@@ -91,7 +92,7 @@ export class ResourcesTableContainerComponent implements OnInit, OnDestroy {
       this.ccdsResourceType = this._CCDSResourceHelperService.getCCDSResourceFromName(this._route.snapshot.fragment);
       console.log(this.ccdsResourceType);
       this._smartService.getClient()
-        .takeUntil(this._unsubscribe)
+        .pipe(takeUntil(this._unsubscribe))
         .subscribe(smartClient => {
           this._setSupportedSearchParams(smartClient);
           this._searchByPatientId(smartClient);
@@ -106,7 +107,7 @@ export class ResourcesTableContainerComponent implements OnInit, OnDestroy {
    */
   private _setSupportedSearchParams(smartClient: FHIR.SMART.SMARTClient) {
     this._smartService.getConformance()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(conformance => {
         this._zone.run(() => {
           this.searchParams = this._helperService.searchParamsSupported(conformance, this.resourceType);
@@ -242,7 +243,7 @@ export class ResourcesTableContainerComponent implements OnInit, OnDestroy {
    */
   applyFilter(specificDate: string, startDate: string, endDate: string) {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._search(smartClient, specificDate, startDate, endDate);
       });
@@ -253,7 +254,7 @@ export class ResourcesTableContainerComponent implements OnInit, OnDestroy {
    */
   reset() {
     this._smartService.getClient()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {
         this._searchByPatientId(smartClient);
       });
@@ -286,7 +287,7 @@ export class ResourcesTableContainerComponent implements OnInit, OnDestroy {
    */
   private _canPerform(smartClient: FHIR.SMART.SMARTClient) {
     this._smartService.getConformance()
-      .takeUntil(this._unsubscribe)
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe(conformance => {
         this._zone.run(() => {
           this.canCreate = this._helperService.hasSupport(conformance, smartClient.tokenResponse.scope, this.resourceType, 'create');
