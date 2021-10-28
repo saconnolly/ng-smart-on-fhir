@@ -25,7 +25,7 @@ export class PatternsOfUseComponent implements AfterViewInit, OnDestroy {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
-    this.chart = am4core.create('chartdiv', am4charts.XYChart);
+    this.chart = am4core.create('chartdivpou', am4charts.XYChart);
 
     this.chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 

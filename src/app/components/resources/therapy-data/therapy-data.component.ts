@@ -25,7 +25,7 @@ export class TherapyDataComponent implements OnDestroy, AfterViewInit {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
-    this.chart = am4core.create('chartdiv', am4charts.XYChart);
+    this.chart = am4core.create('chartdivtdata', am4charts.XYChart);
     this.chart.data = [{
       'x': 1,
       'ay': 6.5,
