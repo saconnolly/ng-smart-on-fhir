@@ -31,9 +31,9 @@ export class AuthService {
   /**
    * Flags that a user has logged in to the application
    */
-  login() {
+  login(uniqueName) {
     this.loggedIn.next(true);
-    this._router.navigate(['/resources/dashboard']);
+    this._router.navigate(['/resources/dashboard/' + uniqueName]);
   }
 
   /**

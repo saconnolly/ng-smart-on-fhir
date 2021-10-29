@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 import { SmartService } from '../../../services/smart.service';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
+import {ClientAppService} from '../../../services';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,12 +18,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _unsubscribe = new Subject<void>();
 
-  constructor(private _zone: NgZone, private _smartService: SmartService) { }
+  constructor(private _zone: NgZone,
+              private _smartService: SmartService,
+              private _route: ActivatedRoute,
+              private _clientAppService: ClientAppService) { }
 
   /**
    * Fetch the Patient Resource based on the Patient in Context
    */
   ngOnInit() {
+    this._clientAppService.getAllClientApps()
+      .pipe(takeUntil(this._unsubscribe))
+      .subscribe(clientApps => {
+        const uniqueName = this._route.snapshot.paramMap.get('uniqueName');
+        const clientApp = clientApps.find(q => q.uniqueName === uniqueName);
+        if (clientApp.dashboardDefaultLaunch === 'pou') {
+          this.toggleOnPOU();
+        } else {
+          this.toggleOnTData();
+        }
+      });
     this._smartService.getClient()
       .pipe(takeUntil(this._unsubscribe))
       .subscribe(smartClient => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService, GlobalService } from '../../../services';
 
 /**
@@ -15,7 +15,8 @@ export class RedirectComponent implements OnInit {
   constructor(
     private _router: Router,
     private _authService: AuthService,
-    private _globalService: GlobalService
+    private _globalService: GlobalService,
+    private _route: ActivatedRoute
   ) { }
 
   /**
@@ -29,7 +30,7 @@ export class RedirectComponent implements OnInit {
    * Callback method once the SMART client has been initialized after the OAuth2.0 token workflow.
    */
   oauth2ReadyCallback = (smartClient: FHIR.SMART.SMARTClient) => {
-    this._authService.login();
+    this._authService.login(this._route.snapshot.paramMap.get('uniqueName'));
   }
 
   ngOnInit() {
