@@ -9,7 +9,7 @@ import {
 import { ResourcesRoutingModule } from './resources-routing.module';
 import { AllMaterialModule } from '../../all-material/all-material.module';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { AceEditorModule } from 'ng2-ace-editor';
+// import { AceEditorModule } from 'ng2-ace-editor';
 import { SmartCommonModule } from '../common/smart-common.module';
 
 /**
@@ -20,7 +20,7 @@ import { SmartCommonModule } from '../common/smart-common.module';
     CommonModule,
     AllMaterialModule,
     NgxJsonViewerModule,
-    AceEditorModule,
+    // AceEditorModule,
     ResourcesRoutingModule,
     SmartCommonModule
   ],

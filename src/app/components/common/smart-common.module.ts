@@ -4,7 +4,7 @@ import { AccessTokenTimerComponent, ErrorDialogComponent, ObjectViewerComponent,
 import { RequestResponseLogComponent } from './request-response-log/request-response-log.component';
 import { AllMaterialModule } from '../../all-material/all-material.module';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { AceEditorModule } from 'ng2-ace-editor';
+// import { AceEditorModule } from 'ng2-ace-editor';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AllMaterialModule,
     NgxJsonViewerModule,
-    AceEditorModule,
+    // AceEditorModule,
     RouterModule
   ],
   declarations: [

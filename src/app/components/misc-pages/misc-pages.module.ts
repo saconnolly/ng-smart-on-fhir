@@ -11,7 +11,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MiscPagesRoutingModule } from './misc-pages-routing.module';
 import { AllMaterialModule } from '../../all-material/all-material.module';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { AceEditorModule } from 'ng2-ace-editor';
+// import { AceEditorModule } from 'ng2-ace-editor';
 import { SmartCommonModule } from '../common/smart-common.module';
 import { FormsModule } from '@angular/forms';
 
@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     AllMaterialModule,
     SmartCommonModule,
     NgxJsonViewerModule,
-    AceEditorModule,
+    // AceEditorModule,
     MiscPagesRoutingModule
   ],
   declarations: [

@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { AceEditorModule } from 'ng2-ace-editor';
+// import { AceEditorModule } from 'ng2-ace-editor';
 import { AppComponent } from './app.component';
 import { AllMaterialModule } from './all-material/all-material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,7 @@ import { SmartCommonModule } from './components/common/smart-common.module';
     FormsModule,
     AllMaterialModule,
     NgxJsonViewerModule,
-    AceEditorModule,
+    // AceEditorModule,
     SmartCommonModule,
     MiscPagesModule,
     ResourcesModule,
