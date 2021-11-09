@@ -2,7 +2,8 @@
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, NgZone, AfterViewChecked, DoCheck, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+
 import { AuthService, GlobalService, SmartService } from './services';
 import { ErrorDialogComponent } from './components/common/error-dialog/error-dialog.component';
 import { takeUntil } from 'rxjs/operators';

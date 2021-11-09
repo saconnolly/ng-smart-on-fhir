@@ -4,7 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { HelperService } from '../../../services/helper.service';
 import { SmartService } from '../../../services/smart.service';
 import { Subscription, Subject } from 'rxjs';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { CCDSResourceHelperService } from 'src/app/services/ccds-resource-helper.service';
 import { CCDSResourceMapping } from 'src/app/models/ccds-resource';
 import { environment } from 'src/environments/environment.prod';

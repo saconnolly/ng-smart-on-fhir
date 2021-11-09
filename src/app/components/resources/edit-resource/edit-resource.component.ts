@@ -5,7 +5,8 @@ import { SmartService } from '../../../services/smart.service';
 import { GlobalService } from '../../../services/global.service';
 import { Subject } from 'rxjs';
 import { DataService } from '../../../services/data.service';
-import { MatSelectChange, MatSnackBar } from '@angular/material';
+import { MatSelectChange } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntil } from 'rxjs/operators';
 
 /**

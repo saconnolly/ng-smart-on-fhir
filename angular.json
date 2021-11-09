@@ -29,9 +29,7 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/fhir-js-client/dist/fhir-client.js",
-              "./node_modules/xhook/dist/xhook.js",
-              "./node_modules/ace-builds/src-min/ace.js",
-              "./node_modules/ace-builds/src-min/theme-eclipse.js"
+              "./node_modules/xhook/dist/xhook.js"
             ]
           },
           "configurations": {
