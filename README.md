@@ -160,5 +160,5 @@ Two types of filters are available -
 https://www.npmjs.com/package/angular-cli-ghpages
 Directly published a live demo into the Github ghpages using ngh
 
-    ng build --base-href="https://apbeilchick.github.io/smart-ng-fhir-app/"
+    ng build --base-href="https://saconnolly.github.io/ng-smart-on-fhir/"
     ngh
