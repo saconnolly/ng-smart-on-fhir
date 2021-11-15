@@ -6011,6 +6011,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       standalonePatient: true,
       ehrLaunch: true,
       server: 'logica'
+    }, {
+      name: 'Shauns Github',
+      uniqueName: 'Shauns Github',
+      clientId: 'ad6400b1-b0c8-4e6d-a206-11d08c0a9f27',
+      redirectUri: 'https://saconnolly.github.io/ng-smart-on-fhir/redirect/shaun',
+      launchUrl: 'https://saconnolly.github.io/ng-smart-on-fhir/launch/shaun',
+      scopes: 'launch/patient fhirUser openid patient/*.* offline_access',
+      standalonePatient: true,
+      ehrLaunch: true,
+      server: 'logica'
     }];
     /***/
   },
