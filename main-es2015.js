@@ -3950,6 +3950,17 @@ const CLIENT_APPS = [
         standalonePatient: true,
         ehrLaunch: true,
         server: 'logica'
+    },
+    {
+        name: 'shaunsgithub2',
+        uniqueName: 'shaunsgithub2',
+        clientId: 'ef1514c5-91f8-4c80-8d7c-6876fbd78165',
+        redirectUri: 'https://saconnolly.github.io/ng-smart-on-fhir/redirect/shaunsgithub2',
+        launchUrl: 'https://saconnolly.github.io/ng-smart-on-fhir/launch/shaunsgithub2',
+        scopes: 'launch/patient,offline_access,openid,patient/*.*,profile,fhirUser',
+        standalonePatient: true,
+        ehrLaunch: true,
+        server: 'logica'
     }
 ];
 
